@@ -6,6 +6,12 @@
 `UUIDtoUUID`, `barcodeToUUID`, and `filenameToBarcode`) has been defunct and
 removed.
 
+### Bug fixes and minor improvements
+
+* `UUIDtoBarcode` ensures that results are ordered based on the input UUIDs.
+* Include informative error message regarding translation of UUIDs from legacy
+files.
+
 ## Changes in version 1.22.0
 
 ### Bug fixes and minor improvements
