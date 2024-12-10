@@ -334,6 +334,11 @@ barcodeToUUID <-
     order(S4Vectors::subjectHits(hits))
 }
 
+.unnest_df <- function(dlist) {
+    do.call(rbind, lapply(unname(dlist), unlist)) |>
+        as.data.frame()
+}
+
 #' @rdname ID-translation
 #'
 #' @param filenames character() A vector of file names usually obtained
@@ -382,27 +387,37 @@ filenameToBarcode <- function(filenames, slides = FALSE) {
     if (slides) {
         endpoint <- c(
             "cases.samples.portions.slides.submitter_id",
-            "associated_entities.entity_submitter_id"
+            "associated_entities.entity_submitter_id",
+            "associated_entities.entity_type",
+            "cases.project.project_id",
+            "cases.samples.tissue_type",
+            "cases.samples.tumor_descriptor"
         )
         reselem <- "associated_entities"
     }
 
     info <- GenomicDataCommons::filter(filesres, ~ file_name %in% filenames) |>
-        GenomicDataCommons::select(c("file_name", endpoint))  |>
+        GenomicDataCommons::select(c("file_name", endpoint)) |>
         results_all()
 
     if (!length(info))
         stop("Query did not return any results. Check 'filenames' input.")
 
-    reps <- lengths(lapply(info[[reselem]], unlist))
+    reps <- unlist(lapply(info[[reselem]], nrow))
     res <- data.frame(
         file_name = rep(info[["file_name"]], reps),
         file_id = rep(info[["file_id"]], reps),
-        placeholder = unname(unlist(info[[reselem]])),
         row.names = NULL,
         stringsAsFactors = FALSE
     )
-    names(res)[3] <- head(endpoint, 1L)
+    res <- cbind(res, .unnest_df(info[[reselem]]))
+    if (slides) {
+        slidedf <- .unnest_df(info[["cases"]])
+        res <- merge(
+            x = res, by.x = "entity_submitter_id",
+            y = slidedf, by.y = "samples.portions.slides.submitter_id"
+        )
+    }
     idx <- .matchSort(res[["file_name"]], filenames)
     res[idx, ]
 }
