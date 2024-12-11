@@ -7,22 +7,23 @@
 TCGAsampleSelect(barcodes, sampleCodes)
 }
 \arguments{
-\item{barcodes}{Either a TCGA barcode vector or \linkS4class{CharacterList}
-containing patient identifiers, sample, portion, plate, and center codes.}
+\item{barcodes}{Either a TCGA barcode vector or
+\link[IRanges:AtomicList-class]{CharacterList} containing patient
+identifiers, sample, portion, plate, and center codes.}
 
 \item{sampleCodes}{Either a character or numeric vector of TCGA sample codes.
 See the \code{sampleType} dataset.}
 }
 \value{
-A logical vector or \linkS4class{LogicalList} of the same length as
-'barcodes' indicating sample type matches
+A logical vector or \link[IRanges:AtomicList-class]{LogicalList} of the
+same length as 'barcodes' indicating sample type matches
 }
 \description{
 The TCGA barcode contains several pieces of information which can
 be parsed by the \link{TCGAbarcode} function. To select a specific type of
 sample, enter the appropriate sampleCode argument from the lookup table.
 See lookup table in \code{data("sampleTypes")}. Barcode inputs can be a
-character vector or a \linkS4class{CharacterList} object.
+character vector or a \link[IRanges:AtomicList-class]{CharacterList} object.
 }
 \examples{
 

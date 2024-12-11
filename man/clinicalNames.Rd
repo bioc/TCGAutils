@@ -5,7 +5,8 @@
 \alias{clinicalNames}
 \title{Clinical dataset names in TCGA}
 \format{
-A \linkS4class{CharacterList} of names for 33 cancer codes
+A \link[IRanges:AtomicList-class]{CharacterList} of names for 33
+cancer codes
 }
 \usage{
 data("clinicalNames")
@@ -17,7 +18,7 @@ The clinical dataset column names in TCGA as provided by the
 \description{
 A dataset of names for each of the TCGA cancer codes available.
 These names were obtained by the clinical datasets from
-\link[RTCGAToolbox]{getFirehoseData}. They serve to subset the current
-datasets provided by \code{curatedTCGAData}.
+\link[RTCGAToolbox:getFirehoseData]{getFirehoseData}. They serve to subset the
+current datasets provided by \code{curatedTCGAData}.
 }
 \keyword{datasets}

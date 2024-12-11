@@ -43,16 +43,19 @@ objects
 This group of functions will convert row annotations as
 either gene symbols or miRNA symbols to row ranges based on database
 resources 'TxDB' and 'org.Hs' packages. It will also simplify the
-representation of \linkS4class{RaggedExperiment} objects to
-\linkS4class{RangedSummarizedExperiment}.
+representation of
+\link[RaggedExperiment:RaggedExperiment-class]{RaggedExperiment} objects to
+\link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment}.
 }
 \details{
 The original \code{SummarizedExperiment} containing either gene symbol
 or miR annotations is replaced or supplemented by a
-\linkS4class{RangedSummarizedExperiment} for those that could be mapped to
-\linkS4class{GRanges}, and optionally another
-\linkS4class{SummarizedExperiment} for annotations that
-could not be mapped to \linkS4class{GRanges}.
+\link[SummarizedExperiment:RangedSummarizedExperiment-class]{RangedSummarizedExperiment}
+for those that could be mapped to
+\link[GenomicRanges:GRanges-class]{GRanges}, and optionally another
+\link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment}
+for annotations that could not be mapped to
+\link[GenomicRanges:GRanges-class]{GRanges}.
 }
 \section{qreduceTCGA}{
 

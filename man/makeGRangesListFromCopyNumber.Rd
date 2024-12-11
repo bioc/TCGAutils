@@ -22,17 +22,17 @@ the column to be used as sample identifiers}
 column to be used as names for each of the ranges in the data}
 
 \item{...}{Additional arguments to pass on to
-\link{makeGRangesListFromDataFrame}}
+\link[GenomicRanges:makeGRangesListFromDataFrame]{GenomicRanges::makeGRangesListFromDataFrame}}
 }
 \value{
-A \link{GRangesList} class object
+A \link[GenomicRanges:GRangesList-class]{GRangesList} class object
 }
 \description{
 \code{makeGRangesListFromCopyNumber} allows the user to convert objects of
 class \code{data.frame} or \link[S4Vectors:DataFrame-class]{S4Vectors::DataFrame} to a
-\linkS4class{GRangesList}. It includes additional features specific to TCGA
-data such as, hugo symbols, probe numbers, segment means, and
-ucsc build (if available).
+\link[GenomicRanges:GRangesList-class]{GRangesList}. It includes additional
+features specific to TCGA data such as, hugo symbols, probe numbers, segment
+means, and ucsc build (if available).
 }
 \examples{
 library(GenomicDataCommons)

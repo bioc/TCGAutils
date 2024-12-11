@@ -9,12 +9,14 @@ data}
 \description{
 TCGAutils is a toolbox to work with TCGA specific datasets. It allows the
 user to manipulate and translate TCGA barcodes, conveniently convert a list
-of data files to \linkS4class{GRangesList}. Take datasets from GISTIC and
-return a \linkS4class{SummarizedExperiment} class object. The package also
-provides functions for working with data from the \code{curatedTCGAData}
+of data files to \link[GenomicRanges:GRangesList-class]{GRangesList}. Take
+datasets from GISTIC and return a
+\link[SummarizedExperiment:SummarizedExperiment-class]{SummarizedExperiment}
+class object. The package also provides functions for working with data from
+the \code{curatedTCGAData}
 experiment data package. It provides convenience functions for extracting
 subtype metadata data and adding clinical data to existing
-\code{\link[MultiAssayExperiment:MultiAssayExperiment-class]{MultiAssayExperiment}}
+\link[MultiAssayExperiment:MultiAssayExperiment-class]{MultiAssayExperiment}
 objects.
 }
 \seealso{

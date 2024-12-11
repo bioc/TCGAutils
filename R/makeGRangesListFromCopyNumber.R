@@ -2,9 +2,9 @@
 #'
 #' `makeGRangesListFromCopyNumber` allows the user to convert objects of
 #' class `data.frame` or [S4Vectors::DataFrame] to a
-#' \linkS4class{GRangesList}. It includes additional features specific to TCGA
-#' data such as, hugo symbols, probe numbers, segment means, and
-#' ucsc build (if available).
+#' [GRangesList][GenomicRanges::GRangesList-class]. It includes additional
+#' features specific to TCGA data such as, hugo symbols, probe numbers, segment
+#' means, and ucsc build (if available).
 #'
 #' @param df A `data.frame` or `DataFrame` class object. `list`
 #' class objects are coerced to `data.frame` or `DataFrame`.
@@ -13,9 +13,9 @@
 #' @param names.field A `character` vector of length one indicating the
 #' column to be used as names for each of the ranges in the data
 #' @param ... Additional arguments to pass on to
-#' \link{makeGRangesListFromDataFrame}
+#' [GenomicRanges::makeGRangesListFromDataFrame]
 #'
-#' @return A \link{GRangesList} class object
+#' @return A [GRangesList][GenomicRanges::GRangesList-class] class object
 #'
 #' @examples
 #' library(GenomicDataCommons)

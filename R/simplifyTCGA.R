@@ -131,15 +131,18 @@ NULL
 #' @description This group of functions will convert row annotations as
 #' either gene symbols or miRNA symbols to row ranges based on database
 #' resources 'TxDB' and 'org.Hs' packages. It will also simplify the
-#' representation of \linkS4class{RaggedExperiment} objects to
-#' \linkS4class{RangedSummarizedExperiment}.
+#' representation of
+#' [RaggedExperiment][RaggedExperiment::RaggedExperiment-class] objects to
+#' [RangedSummarizedExperiment][SummarizedExperiment::RangedSummarizedExperiment-class].
 #'
 #' @details The original `SummarizedExperiment` containing either gene symbol
 #'   or miR annotations is replaced or supplemented by a
-#'   \linkS4class{RangedSummarizedExperiment} for those that could be mapped to
-#'   \linkS4class{GRanges}, and optionally another
-#'   \linkS4class{SummarizedExperiment} for annotations that
-#'   could not be mapped to \linkS4class{GRanges}.
+#'   [RangedSummarizedExperiment][SummarizedExperiment::RangedSummarizedExperiment-class]
+#'   for those that could be mapped to
+#'   [GRanges][GenomicRanges::GRanges-class], and optionally another
+#'   [SummarizedExperiment][SummarizedExperiment::SummarizedExperiment-class]
+#'   for annotations that could not be mapped to
+#'   [GRanges][GenomicRanges::GRanges-class].
 #'
 #' @section qreduceTCGA:
 #'

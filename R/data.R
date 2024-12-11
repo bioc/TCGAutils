@@ -34,10 +34,11 @@
 #'
 #' A dataset of names for each of the TCGA cancer codes available.
 #' These names were obtained by the clinical datasets from
-#' \link[RTCGAToolbox]{getFirehoseData}. They serve to subset the current
-#' datasets provided by `curatedTCGAData`.
+#' [getFirehoseData][RTCGAToolbox::getFirehoseData]. They serve to subset the
+#' current datasets provided by `curatedTCGAData`.
 #'
-#' @format A \linkS4class{CharacterList} of names for 33 cancer codes
+#' @format A [CharacterList][IRanges::CharacterList-class] of names for 33
+#'   cancer codes
 #'
 #' @return The clinical dataset column names in TCGA as provided by the
 #' `RTCGAToolbox`

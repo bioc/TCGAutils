@@ -3,8 +3,8 @@
 #' This function serves to read exon-level expression data. It works for exon
 #' quantification (raw counts and RPKM) and junction quantification
 #' (raw counts) file paths and represents such data as a
-#' \linkS4class{GRangesList}. The data files can be downloaded
-#' via the Genomic Data Commons (GDC) Legacy Archive.
+#' [GRangesList][GenomicRanges::GRangesList-class]. The data files can be
+#' downloaded via the Genomic Data Commons (GDC) Legacy Archive.
 #'
 #' @details The `rangesColumn` name in the GDC data files is usually "exon"
 #'   but can be changed with the `rangesColumn` argument, if different.
@@ -34,7 +34,7 @@
 #'
 #' @md
 #'
-#' @return A \linkS4class{GRangesList} object
+#' @return A [GRangesList][GenomicRanges::GRangesList-class] object
 #'
 #' @author M. Ramos
 #'

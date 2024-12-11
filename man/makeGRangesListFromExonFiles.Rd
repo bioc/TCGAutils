@@ -34,14 +34,14 @@ containing the ranges information (default "exon"); see details.}
 read in (all rows by default; default Inf)}
 }
 \value{
-A \linkS4class{GRangesList} object
+A \link[GenomicRanges:GRangesList-class]{GRangesList} object
 }
 \description{
 This function serves to read exon-level expression data. It works for exon
 quantification (raw counts and RPKM) and junction quantification
 (raw counts) file paths and represents such data as a
-\linkS4class{GRangesList}. The data files can be downloaded
-via the Genomic Data Commons (GDC) Legacy Archive.
+\link[GenomicRanges:GRangesList-class]{GRangesList}. The data files can be
+downloaded via the Genomic Data Commons (GDC) Legacy Archive.
 }
 \details{
 The \code{rangesColumn} name in the GDC data files is usually "exon"
