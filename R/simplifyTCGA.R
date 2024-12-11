@@ -157,23 +157,19 @@ NULL
 #' `seqlevelsStyle` setter, `seqlevelsStyle(gn) <- "NCBI"`. `qreduceTCGA`
 #' uses the NCBI genome annotation as the default reference.
 #'
-#' \preformatted{
 #'     nonsilent <- function(scores, ranges, qranges)
 #'         any(scores != "Silent")
-#' }
 #'
 #' `RaggedExperiment` mutation objects become a genes by patients
 #' `RangedSummarizedExperiment` object containing '1' if there is a non-silent
 #' mutation somewhere in the gene, and '0' otherwise as obtained from the
 #' `Variant_Classification` column in the data.
 #'
-#' \preformatted{
 #'     weightedmean <- function(scores, ranges, qranges) {
 #'         isects <- GenomicRanges::pintersect(ranges, qranges)
 #'         sum(scores * BiocGenerics::width(isects)) /
 #'             sum(BiocGenerics::width(isects))
 #'     }
-#' }
 #'
 #' "CNA" and "CNV" segmented copy number are reduced using a weighted mean in
 #' the rare cases of overlapping (non-disjoint) copy number regions.

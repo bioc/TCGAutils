@@ -71,23 +71,21 @@ which includes the patch number, e.g., GRCh37.p14, as provided by the
 \code{seqlevelsStyle} setter, \code{seqlevelsStyle(gn) <- "NCBI"}. \code{qreduceTCGA}
 uses the NCBI genome annotation as the default reference.
 
-\preformatted{
-    nonsilent <- function(scores, ranges, qranges)
-        any(scores != "Silent")
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{nonsilent <- function(scores, ranges, qranges)
+    any(scores != "Silent")
+}\if{html}{\out{</div>}}
 
 \code{RaggedExperiment} mutation objects become a genes by patients
 \code{RangedSummarizedExperiment} object containing '1' if there is a non-silent
 mutation somewhere in the gene, and '0' otherwise as obtained from the
 \code{Variant_Classification} column in the data.
 
-\preformatted{
-    weightedmean <- function(scores, ranges, qranges) {
-        isects <- GenomicRanges::pintersect(ranges, qranges)
-        sum(scores * BiocGenerics::width(isects)) /
-            sum(BiocGenerics::width(isects))
-    }
-}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{weightedmean <- function(scores, ranges, qranges) \{
+    isects <- GenomicRanges::pintersect(ranges, qranges)
+    sum(scores * BiocGenerics::width(isects)) /
+        sum(BiocGenerics::width(isects))
+\}
+}\if{html}{\out{</div>}}
 
 "CNA" and "CNV" segmented copy number are reduced using a weighted mean in
 the rare cases of overlapping (non-disjoint) copy number regions.
