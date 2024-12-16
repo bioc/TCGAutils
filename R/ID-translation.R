@@ -346,15 +346,18 @@ barcodeToUUID <-
 
 #' @rdname ID-translation
 #'
-#' @param filenames character() A vector of file names usually obtained
+#' @param filenames `character()` A vector of file names usually obtained
 #'     from a `GenomicDataCommons` query
 #'
-#' @param slides logical(1L) Whether the provided file names correspond to
-#'   slides typically with an `.svs` extension. **Note** The barcodes returned
-#'   correspond 1:1 with the `filename` inputs. Always triple check the
-#'   output against the Genomic Data Commons Data Portal by searching the
-#'   file name and comparing associated "Entity ID" with the `submitter_id`
+#' @param slides `logical(1L)` **DEPRECATED**: Whether the provided file names
+#'   correspond to slides typically with an `.svs` extension. **Note** The
+#'   barcodes returned correspond 1:1 with the `filename` inputs. Always triple
+#'   check the output against the Genomic Data Commons Data Portal by searching
+#'   the file name and comparing associated "Entity ID" with the `submitter_id`
 #'   given by the function.
+#'
+#' @details When providing slide file names, the function will only work if
+#'   **all** the provided files are slide files with an `.svs` extension.
 #'
 #' @examples
 #' library(GenomicDataCommons)
@@ -386,6 +389,19 @@ barcodeToUUID <-
 #'
 #' @export filenameToBarcode
 filenameToBarcode <- function(filenames, slides = FALSE) {
+    endwithsvs <- endsWith(filenames, "svs")
+    if (!all(endwithsvs) && any(endwithsvs))
+        stop("Not all file names have an 'svs' extension.")
+    if (!missing(slides)) {
+        .Deprecated(
+            msg = "The 'slides' argument is deprecated.", package = "TCGAutils"
+        )
+        if (all(endwithsvs) && !slides)
+            warning(
+                "All files have an 'svs' extension. Setting 'slides' to TRUE."
+            )
+        slides <- all(endwithsvs)
+    }
     filesres <- files()
     endpoint <- "cases.samples.portions.analytes.aliquots.submitter_id"
     reselem <- "cases"
