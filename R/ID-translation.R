@@ -335,12 +335,13 @@ barcodeToUUID <-
 }
 
 .unnest_df <- function(dlist, cols) {
-    resdf <- do.call(rbind, lapply(unname(dlist), unlist)) |>
+    dlist <- lapply(unname(dlist), unlist)
+    if (!missing(cols)) {
+        cols <- gsub("cases\\.", "", cols)
+        dlist <- lapply(dlist, function(d) d[names(d) %in% cols])
+    }
+    do.call(rbind, dlist) |>
         as.data.frame()
-    if (missing(cols))
-        return(resdf)
-    cols <- gsub("cases\\.", "", cols)
-    resdf[, names(resdf) %in% cols, drop = FALSE]
 }
 
 #' @rdname ID-translation
