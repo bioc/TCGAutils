@@ -334,9 +334,13 @@ barcodeToUUID <-
     order(S4Vectors::subjectHits(hits))
 }
 
-.unnest_df <- function(dlist) {
-    do.call(rbind, lapply(unname(dlist), unlist)) |>
+.unnest_df <- function(dlist, cols) {
+    resdf <- do.call(rbind, lapply(unname(dlist), unlist)) |>
         as.data.frame()
+    if (missing(cols))
+        return(resdf)
+    cols <- gsub("cases\\.", "", cols)
+    resdf[, names(resdf) %in% cols, drop = FALSE]
 }
 
 #' @rdname ID-translation
@@ -385,13 +389,18 @@ filenameToBarcode <- function(filenames, slides = FALSE) {
     endpoint <- "cases.samples.portions.analytes.aliquots.submitter_id"
     reselem <- "cases"
     if (slides) {
-        endpoint <- c(
-            "cases.samples.portions.slides.submitter_id",
-            "associated_entities.entity_submitter_id",
-            "associated_entities.entity_type",
+        cases_fields <- c(
             "cases.project.project_id",
             "cases.samples.tissue_type",
             "cases.samples.tumor_descriptor"
+        )
+        endpoint <- c(
+            "cases.samples.portions.slides.submitter_id",
+            "associated_entities.entity_id",
+            "associated_entities.entity_submitter_id",
+            "associated_entities.entity_type",
+            "associated_entities.case_id",
+            cases_meta
         )
         reselem <- "associated_entities"
     }
@@ -412,11 +421,8 @@ filenameToBarcode <- function(filenames, slides = FALSE) {
     )
     res <- cbind(res, .unnest_df(info[[reselem]]))
     if (slides) {
-        slidedf <- .unnest_df(info[["cases"]])
-        res <- merge(
-            x = res, by.x = "entity_submitter_id",
-            y = slidedf, by.y = "samples.portions.slides.submitter_id"
-        )
+        slidedf <- .unnest_df(info[["cases"]], cols = cases_fields)
+        res <- cbind.data.frame(res, slidedf)
     }
     idx <- .matchSort(res[["file_name"]], filenames)
     res[idx, ]
