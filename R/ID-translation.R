@@ -390,17 +390,18 @@ barcodeToUUID <-
 #' @export filenameToBarcode
 filenameToBarcode <- function(filenames, slides = FALSE) {
     endwithsvs <- endsWith(filenames, "svs")
-    if (!all(endwithsvs) && any(endwithsvs))
+    allsvs <- all(endwithsvs)
+    if (!allsvs && any(endwithsvs))
         stop("Not all file names have an 'svs' extension.")
     if (!missing(slides)) {
         .Deprecated(
             msg = "The 'slides' argument is deprecated.", package = "TCGAutils"
         )
-        if (all(endwithsvs) && !slides)
+        if (allsvs && !slides)
             warning(
                 "All files have an 'svs' extension. Setting 'slides' to TRUE."
             )
-        slides <- all(endwithsvs)
+        slides <- allsvs
     }
     filesres <- files()
     endpoint <- "cases.samples.portions.analytes.aliquots.submitter_id"
