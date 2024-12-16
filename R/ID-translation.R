@@ -400,7 +400,7 @@ filenameToBarcode <- function(filenames, slides = FALSE) {
             "associated_entities.entity_submitter_id",
             "associated_entities.entity_type",
             "associated_entities.case_id",
-            cases_meta
+            cases_fields
         )
         reselem <- "associated_entities"
     }
